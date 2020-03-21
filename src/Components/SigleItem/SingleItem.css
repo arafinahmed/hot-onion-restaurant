@@ -1,0 +1,28 @@
+.plus-minus{
+    width: 100px;
+    
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-top: 7px;
+    margin-left: 50px;
+}
+.plus-minus h3{
+    
+    font-weight: 250;
+}
+.selection-button1{
+    border: none;
+    text-decoration: none;
+    background-color: white;
+}
+
+.extra-image img{
+    width: 150px;
+}
+.extra-image{
+    margin-top: 30px;
+}
+.left-side{
+    margin-top: 50px;
+}

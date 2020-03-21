@@ -27,6 +27,7 @@ const HeadHome = () => {
                         <button className="btn btn-danger">Sign Up</button>
                     </div>
                 </div>
+                
             </div>
         </div>
     );

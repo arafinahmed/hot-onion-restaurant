@@ -18,20 +18,23 @@ const SelectionButton = () => {
             <br/>
             <div className="d-flex justify-content-center">
             <div>
-                <button onClick={() => {
+                <button className="selection-button"
+                onClick={() => {
                     handleButton('breakfast')
                 }}>
                     Breakfast</button>
         
             </div>
             <div>
-            <button onClick={() => {
+            <button className="selection-button"
+            onClick={() => {
                     handleButton('lunch')
                 }}>
                 Lunch</button>
             </div>
             <div>
-            <button onClick={() => {
+            <button className="selection-button"
+            onClick={() => {
                     handleButton('dinner')
                 }}>
                 Dinner</button>

@@ -12,3 +12,15 @@
 .fixed-image{
     width: 150px;
 }
+a:link{
+    color: black;
+}
+a:visited{
+    color: black;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}

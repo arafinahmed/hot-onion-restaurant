@@ -24,7 +24,7 @@ const Footer = () => {
                 </div>
 
                 <div className="d-flex justify-content-between">
-                    <p>Copyright 2020 Online food</p>
+                    <p>Copyright © 2020 Online food</p>
                     <div className="d-flex justify-content-between">
                     <p className="aladaKori">Privacy Policy.</p>
                     <p className="aladaKori">Terms of Use</p>

@@ -8,14 +8,25 @@ import {
   Link
 } from "react-router-dom";
 import Home from './Components/Home/Home';
+import SingleItem from './Components/SigleItem/SingleItem';
+import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   return (
     <div>
       <Router>
         <Switch>
-          <Route path="/">
+          <Route path="/shop">
             <Home></Home>
+          </Route>
+          <Route path="/:key">
+              <SingleItem></SingleItem>
+          </Route>
+          <Route exact path="/">
+            <Home></Home>
+          </Route>
+          <Route path="*">
+            <NotFound></NotFound>
           </Route>
         </Switch>
       </Router>       
