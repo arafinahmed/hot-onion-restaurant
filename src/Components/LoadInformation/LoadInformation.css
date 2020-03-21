@@ -1,0 +1,14 @@
+
+.special-effects{
+    padding-top: 40px;
+    float: left;
+    text-align: center;
+    height: 300px;
+}
+.special-effects:hover{
+    box-shadow: 5px 5px 5px 5px gray;
+    border-radius: 10px;
+}
+.fixed-image{
+    width: 150px;
+}
