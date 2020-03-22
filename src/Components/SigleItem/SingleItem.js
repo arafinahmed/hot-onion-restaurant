@@ -4,6 +4,7 @@ import data from '../../Data/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './SingleItem.css'
+import ThreButton from '../Threbutton/ThreButton';
 
 const element = <FontAwesomeIcon icon={faShoppingCart} />
 
@@ -45,23 +46,7 @@ const SingleItem = () => {
     
     return (
         <div className="container">
-            <div className="d-flex justify-content-center">
-                <Link to="/shop">
-                <div>
-                    <button className="selection-button">Breakfast</button>
-                </div>
-                </Link>
-                <Link to="/shop">
-                <div>
-                    <button className="selection-button">Lunch</button>
-                </div>
-                </Link>
-                <Link to="/shop">
-                <div>
-                    <button className="selection-button">Dinner</button>
-                </div>
-                </Link>                
-            </div>
+            <ThreButton></ThreButton>
             <div className="d-flex justify-content-center justify-content-around">
             <div className="col-md-6 left-side">
                 <h1>{name}</h1>
