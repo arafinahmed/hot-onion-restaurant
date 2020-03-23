@@ -21,15 +21,34 @@ const UseAuth = () => {
      const signUpFirebase = (data) =>{
             console.log('from useAuth', data);
             return firebase.auth().createUserWithEmailAndPassword(data.email, data.password1)
-            .then(() => {
+            .then(res => {
                 setUser(data);
                 console.log('success', data);
+                return res.user;
             })
             .catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log('arafin message',errorMessage);
+            return error.message;
             setUser(null);
+          });
+     }
+     const signInFirebase = (data) => {
+         console.log('signin firebase', data.email, data.password);
+        return firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+        .then((res) =>
+        {
+            console.log("signIn");
+            return res.user;
+        })
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log('error signin');
+            return error.message;
+            // ...
           });
      }
 
@@ -44,6 +63,7 @@ const UseAuth = () => {
               var isAnonymous = user.isAnonymous;
               var uid = user.uid;
               var providerData = user.providerData;
+              console.log('useEffect');
               // ...
             } else {
               // User is signed out.
@@ -54,7 +74,8 @@ const UseAuth = () => {
 
     return {
         user,
-        signUpFirebase
+        signUpFirebase, 
+        signInFirebase
     }
 };
 

@@ -16,7 +16,7 @@ import {AuthProvider } from './Components/Login/UseAuth';
 import Cart from './Cart/Cart';
 
 
-function App() {
+function App(props) {
   return (
     <div>
       <AuthProvider>

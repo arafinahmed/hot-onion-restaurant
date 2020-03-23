@@ -3,6 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './HeadHome.css'
+import { Link } from 'react-router-dom';
 
 const element = <FontAwesomeIcon icon={faShoppingCart} />
 
@@ -21,10 +22,10 @@ const HeadHome = () => {
                         {element}
                     </div>
                     <div className="right">
-                        <button className="btn btn-outline-success">Login</button>
+                        <Link to = "/signin"> <button className="btn btn-outline-success">Login</button></Link>
                     </div>
                     <div className="right">
-                        <button className="btn btn-danger">Sign Up</button>
+                        <Link to="/signup"> <button className="btn btn-danger">Sign Up</button> </Link>
                     </div>
                 </div>
                 
