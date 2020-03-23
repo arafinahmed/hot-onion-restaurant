@@ -16,7 +16,24 @@ export const useAuth = () => {
 }
 
 const UseAuth = () => {
-     const [user, setUser] = useState(null);
+    const u = JSON.parse(localStorage.getItem('cart')) ;
+    const [user, setUser] = useState(null);
+
+     const [cart, setCart] = useState(u);
+
+     const saveTolocal = (newCart) => {
+        localStorage.clear();
+        localStorage.setItem('cart', JSON.stringify(newCart));
+     }
+    
+     const updateCart = (id, count) => {
+            const newCart = {
+                ...cart
+            };
+            newCart[id] = count;
+            setCart(newCart);
+            saveTolocal(newCart);
+     }
 
      const signUpFirebase = (data) =>{
             console.log('from useAuth', data);
@@ -24,14 +41,15 @@ const UseAuth = () => {
             .then(res => {
                 setUser(data);
                 console.log('success', data);
+                setUser(res.user);
                 return res.user;
             })
             .catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log('arafin message',errorMessage);
-            return error.message;
             setUser(null);
+            return error.message;
           });
      }
      const signInFirebase = (data) => {
@@ -40,6 +58,7 @@ const UseAuth = () => {
         .then((res) =>
         {
             console.log("signIn");
+            setUser(res.user);
             return res.user;
         })
         .catch(function(error) {
@@ -51,6 +70,20 @@ const UseAuth = () => {
             // ...
           });
      }
+     const provider = new firebase.auth.GoogleAuthProvider();        
+    
+    const signInWithGoogle = () => {
+        return firebase.auth().signInWithPopup(provider)
+        .then(res => {
+            
+            return res.user;
+        })
+        .catch(err => {
+            console.log(err);
+            setUser(null);
+            return err.message;
+        })
+    }
 
      useEffect(() => {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -75,7 +108,10 @@ const UseAuth = () => {
     return {
         user,
         signUpFirebase, 
-        signInFirebase
+        signInFirebase, 
+        signInWithGoogle, 
+        cart, 
+        updateCart
     }
 };
 

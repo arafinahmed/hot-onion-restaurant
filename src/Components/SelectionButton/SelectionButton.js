@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import LoadInformation from '../LoadInformation/LoadInformation';
 import data from '../../Data/data';
 import './SelectionButton.css'
+import UseAuth from '../Login/UseAuth';
 
 const SelectionButton = () => {
+    const auth = UseAuth();
+    console.log(auth);
     const [mydata, setMydata] = useState('lunch');
     const data18 = data;
     const x = data18.filter(x => x.type==='lunch');
@@ -54,7 +57,13 @@ const SelectionButton = () => {
                 <br/>
                 <br/>
                 <br/>
-            <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
+            {
+                
+                auth.cart ? 
+                    <button className="btn btn-success btn-lg">Checkout  Your Food</button> :
+                    <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
+                
+            }
             </div>
             <br/>
             

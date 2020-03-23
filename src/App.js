@@ -13,7 +13,8 @@ import NotFound from './Components/NotFound/NotFound';
 import SignIn from './Components/SginIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import {AuthProvider } from './Components/Login/UseAuth';
-import Cart from './Cart/Cart';
+import Cart from './Components/Cart/Cart';
+import LastPage from './Components/LastPage/LastPage';
 
 
 function App(props) {
@@ -34,6 +35,9 @@ function App(props) {
           </Route>
           <Route path="/cart">
             <Cart></Cart>
+          </Route>
+          <Route path="/lastpage">
+            <LastPage></LastPage>
           </Route>
           <Route path="/:key">
               <SingleItem></SingleItem>

@@ -5,10 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './SingleItem.css'
 import ThreButton from '../Threbutton/ThreButton';
+import UseAuth from '../Login/UseAuth';
 
 const element = <FontAwesomeIcon icon={faShoppingCart} />
 
 const SingleItem = () => {
+    const auth = UseAuth();
+    console.log('formsingle', auth);
     const [count, setCount] = useState(0);
     const countHandle = (type) => {
         if(type==='plus'){
@@ -43,6 +46,11 @@ const SingleItem = () => {
     const pd2 = load.filter(pd => pd.id === pkeyFor);
     
     const {picture, name, LongDescription, price} = product[0];
+
+    const addToCart = ()  => 
+    {
+        auth.updateCart(key, count);
+    }
     
     return (
         <div className="container">
@@ -65,7 +73,7 @@ const SingleItem = () => {
                 </div>                
                 </div>
                 <div className="AddtoCart">
-                    <button className="btn btn-danger">{element} Add</button>
+                    <button onClick={addToCart} className="btn btn-danger">{element} Add</button>
                 </div>
                 <div className="extra-image d-flex justify-content-start">
                     <div className="col-md-4">
