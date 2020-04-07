@@ -36,7 +36,7 @@ const SignUp = () => {
     }
     const auth = UseAuth();
     console.log(auth);
-    const handleSignUp = () => {
+    const handleSignUp = (event) => {
         if(user.password1===user.password2){
             auth.signUpFirebase(user)
         .then(res => {
@@ -46,6 +46,8 @@ const SignUp = () => {
         else{
             alert('Password Not Match');
         }
+        event.preventDefault();
+        event.target.reset();
     }
     return (
         <div className="signUp">

@@ -18,9 +18,11 @@ const HeadHome = () => {
                 </div>
 
                 <div className="d-flex justify-content-end align-items-center">
+                    <Link to="/cart"> 
                     <div className="right">
                         {element}
                     </div>
+                    </Link>
                     <div className="right">
                         <Link to = "/signin"> <button className="btn btn-outline-success">Login</button></Link>
                     </div>

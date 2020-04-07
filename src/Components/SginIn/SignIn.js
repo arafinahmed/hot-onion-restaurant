@@ -2,10 +2,23 @@ import React, { useState } from 'react';
 import UseAuth from '../Login/UseAuth';
 
 const SignIn = () => {
+    const auth = UseAuth();
+    
     const [user, setUser] = useState({
         email:'',
         password:''
     });
+    console.log(auth.user);
+    const handleGoogle = () => {
+        auth.signInWithGoogle()
+        .then( res => {
+            console.log(res);
+            setUser(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
     const handleChange = (event) => {
         const newUserInfo = {
             ...user
@@ -22,20 +35,20 @@ const SignIn = () => {
         console.log(newUserInfo);
         setUser(newUserInfo);
     }
-    const auth = UseAuth();
-    const handleSignIn = () => {
+    const handleSignIn = (event) => {
         let x =10;
         console.log(auth);
         auth.signInFirebase(user)
         .then(res => {console.log(res);
-            window.location.pathname = '/review';
-            x = 12;
+            window.location.pathname = '/cart';
         })
         .catch(err => {
             console.log(err.message);
             x = 13;
         });
         console.log(x);
+        event.preventDefault();
+        event.target.reset();
 
     }
     return (
@@ -48,6 +61,8 @@ const SignIn = () => {
                 <br/>
                 <input className="signUpForm signupButton" type="submit" value="Signin"/>
             </form>
+
+            <button onClick={handleGoogle}>Signin With Google</button>
         </div>
     );
 };

@@ -1,0 +1,29 @@
+.car{
+    width: 150px;
+    padding: 10px 40px;
+}
+.designIt{
+    background-color: rgb(241, 241, 238);
+    margin-left: 20px;
+    border-radius: 5px;
+}
+.makeithappen{
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+}
+.sizekori{
+    width: 50px;
+}
+.makeithappen img{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.custom{
+    margin-top: 10px;
+    width: 330px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    
+}

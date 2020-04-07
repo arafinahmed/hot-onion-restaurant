@@ -1,17 +1,36 @@
 import React, { useState } from 'react';
 import LoadInformation from '../LoadInformation/LoadInformation';
-import data from '../../Data/data';
+
 import './SelectionButton.css'
+import UseAuth from '../Login/UseAuth';
+import { useEffect } from 'react';
 
 const SelectionButton = () => {
+    const auth = UseAuth();
+    console.log(auth);
     const [mydata, setMydata] = useState('lunch');
-    const data18 = data;
-    const x = data18.filter(x => x.type==='lunch');
-    const [sixdata, setSixdata] = useState(x);
+    const [sixdata, setSixdata] = useState(null);
+    const [data18, setData18] = useState(null);
+    useEffect(()=>{
+        fetch('http://localhost:4000/products')
+        .then(res => res.json())
+        .then(data => {
+            console.log(data, 'data from data base');
+            setData18(data);
+        })
+    }, []);
+    useEffect(()=>{
+        if(data18){
+            const x = data18.filter(x => x.type==='lunch');
+            setSixdata(x);
+        }
+    }, [data18])
+    
     const handleButton = (value) => {
         setMydata(value);
-        const x = data18.filter(x => x.type===value);
-        setSixdata(x);
+        if(data18){
+            const x = data18.filter(x => x.type===value);
+            setSixdata(x);        }
     }
     return (
         <div className="container">
@@ -43,7 +62,7 @@ const SelectionButton = () => {
             <br/>
             <div className="">
             {
-                sixdata.map(d => <LoadInformation key= {d.id} data={d}></LoadInformation>)
+               sixdata && sixdata.map(d => <LoadInformation key= {d.id} data={d}></LoadInformation>)
 
             }
             </div>
@@ -54,7 +73,13 @@ const SelectionButton = () => {
                 <br/>
                 <br/>
                 <br/>
-            <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
+            {
+                
+                auth.cart ? 
+                    <button className="btn btn-success btn-lg">Checkout  Your Food</button> :
+                    <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
+                
+            }
             </div>
             <br/>
             

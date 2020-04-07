@@ -16,7 +16,33 @@ export const useAuth = () => {
 }
 
 const UseAuth = () => {
-     const [user, setUser] = useState(null);
+    const u = JSON.parse(localStorage.getItem('cart')) ;
+    const [user, setUser] = useState(null);
+
+     const [cart, setCart] = useState(u);
+
+     const saveTolocal = (newCart) => {
+        localStorage.clear();
+        localStorage.setItem('cart', JSON.stringify(newCart));
+     }
+     const getUser = () => {
+        const existingUser = localStorage.getItem('userId');
+        if (existingUser) {
+            return existingUser; 
+        } else {
+            const newUser = 'user-' + new Date().getTime();
+            localStorage.setItem('userId', newUser)
+            return newUser;
+        }
+    }
+     const updateCart = (id, count) => {
+            const newCart = {
+                ...cart
+            };
+            newCart[id] = count;
+            setCart(newCart);
+            saveTolocal(newCart);
+     }
 
      const signUpFirebase = (data) =>{
             console.log('from useAuth', data);
@@ -24,14 +50,15 @@ const UseAuth = () => {
             .then(res => {
                 setUser(data);
                 console.log('success', data);
+                setUser(res.user);
                 return res.user;
             })
             .catch(function(error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log('arafin message',errorMessage);
-            return error.message;
             setUser(null);
+            return error.message;
           });
      }
      const signInFirebase = (data) => {
@@ -40,6 +67,8 @@ const UseAuth = () => {
         .then((res) =>
         {
             console.log("signIn");
+            setUser(res.user);
+            firebase.auth.Auth.Persistence.LOCAL = true;
             return res.user;
         })
         .catch(function(error) {
@@ -51,23 +80,33 @@ const UseAuth = () => {
             // ...
           });
      }
+     const provider = new firebase.auth.GoogleAuthProvider();        
+    
+    const signInWithGoogle = () => {
+        return firebase.auth().signInWithPopup(provider)
+        .then(res => {
+            
+            return res.user;
+        })
+        .catch(err => {
+            console.log(err);
+            setUser(null);
+            return err.message;
+        })
+    }
 
      useEffect(() => {
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
+        firebase.auth().onAuthStateChanged(function(usr) {
+            if (usr) {
               // User is signed in.
-              var displayName = user.displayName;
-              var email = user.email;
-              var emailVerified = user.emailVerified;
-              var photoURL = user.photoURL;
-              var isAnonymous = user.isAnonymous;
-              var uid = user.uid;
-              var providerData = user.providerData;
-              console.log('useEffect');
+              const cUser = getUser(usr);
+              setUser(cUser);
+               console.log('useEffect');
               // ...
             } else {
               // User is signed out.
               // ...
+              setUser(null);
             }
           });
      }, [])
@@ -75,7 +114,10 @@ const UseAuth = () => {
     return {
         user,
         signUpFirebase, 
-        signInFirebase
+        signInFirebase, 
+        signInWithGoogle, 
+        cart, 
+        updateCart
     }
 };
 
