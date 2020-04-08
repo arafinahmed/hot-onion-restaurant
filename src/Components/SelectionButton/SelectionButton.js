@@ -12,7 +12,7 @@ const SelectionButton = () => {
     const [sixdata, setSixdata] = useState(null);
     const [data18, setData18] = useState(null);
     useEffect(()=>{
-        fetch('http://localhost:4000/products')
+        fetch('https://damp-ocean-20947.herokuapp.com/products')
         .then(res => res.json())
         .then(data => {
             console.log(data, 'data from data base');
@@ -25,7 +25,9 @@ const SelectionButton = () => {
             setSixdata(x);
         }
     }, [data18])
-    
+    const linktocart = () => {
+        window.location.pathname = '/cart';
+    }
     const handleButton = (value) => {
         setMydata(value);
         if(data18){
@@ -76,7 +78,7 @@ const SelectionButton = () => {
             {
                 
                 auth.cart ? 
-                    <button className="btn btn-success btn-lg">Checkout  Your Food</button> :
+                    <button onClick={linktocart} className="btn btn-success btn-lg">Checkout  Your Food</button> :
                     <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
                 
             }

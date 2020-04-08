@@ -62,7 +62,6 @@ const SignIn = () => {
                 <input className="signUpForm signupButton" type="submit" value="Signin"/>
             </form>
 
-            <button onClick={handleGoogle}>Signin With Google</button>
         </div>
     );
 };

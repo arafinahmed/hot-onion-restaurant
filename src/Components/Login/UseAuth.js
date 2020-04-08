@@ -18,6 +18,22 @@ export const useAuth = () => {
 const UseAuth = () => {
     const u = JSON.parse(localStorage.getItem('cart')) ;
     const [user, setUser] = useState(null);
+    const insertData = (data) => {
+        fetch('https://damp-ocean-20947.herokuapp.com/addUser', {
+            method:'POST',
+            body:JSON.stringify(data),
+            headers: {
+               "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            console.log('post success');
+            setUser(data);
+        })
+    }
+    
 
      const [cart, setCart] = useState(u);
 
@@ -25,15 +41,10 @@ const UseAuth = () => {
         localStorage.clear();
         localStorage.setItem('cart', JSON.stringify(newCart));
      }
-     const getUser = () => {
-        const existingUser = localStorage.getItem('userId');
-        if (existingUser) {
-            return existingUser; 
-        } else {
-            const newUser = 'user-' + new Date().getTime();
-            localStorage.setItem('userId', newUser)
-            return newUser;
-        }
+     const getUser = (usr) => {
+        const {email} = usr;
+
+        return {email:email};
     }
      const updateCart = (id, count) => {
             const newCart = {
@@ -48,9 +59,9 @@ const UseAuth = () => {
             console.log('from useAuth', data);
             return firebase.auth().createUserWithEmailAndPassword(data.email, data.password1)
             .then(res => {
-                setUser(data);
-                console.log('success', data);
-                setUser(res.user);
+                const sendData = {name: data.name, email: data.email};
+                insertData(sendData);
+                setUser(sendData);
                 return res.user;
             })
             .catch(function(error) {
@@ -80,27 +91,22 @@ const UseAuth = () => {
             // ...
           });
      }
-     const provider = new firebase.auth.GoogleAuthProvider();        
-    
-    const signInWithGoogle = () => {
-        return firebase.auth().signInWithPopup(provider)
-        .then(res => {
-            
-            return res.user;
-        })
-        .catch(err => {
-            console.log(err);
+     const firebaseSingOut = () => {
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
             setUser(null);
-            return err.message;
-        })
-    }
+          }).catch(function(error) {
+            // An error happened.
+          });
+     }
+         
 
      useEffect(() => {
         firebase.auth().onAuthStateChanged(function(usr) {
             if (usr) {
               // User is signed in.
-              const cUser = getUser(usr);
-              setUser(cUser);
+              const x =getUser(usr)
+                setUser(x);
                console.log('useEffect');
               // ...
             } else {
@@ -115,9 +121,9 @@ const UseAuth = () => {
         user,
         signUpFirebase, 
         signInFirebase, 
-        signInWithGoogle, 
         cart, 
-        updateCart
+        updateCart, 
+        firebaseSingOut
     }
 };
 

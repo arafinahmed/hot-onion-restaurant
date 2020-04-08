@@ -23,7 +23,7 @@ const SingleItem = () => {
     const [pd2, setPd2] = useState(vvv);
 
     useEffect(() => {
-        fetch('http://localhost:4000/products')
+        fetch('https://damp-ocean-20947.herokuapp.com/products')
             .then(res => res.json())
             .then(data => {
                 setLoad(data);
@@ -86,7 +86,7 @@ const SingleItem = () => {
     const { picture, name, LongDescription, price } = product;
 
     const addToCart = () => {
-        auth.updateCart(key, count);
+        auth.updateCart(Number(key.key), count);
     }
 
 

@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 const Home = () => {
     return (
         <div>
-            <HeadHome></HeadHome>
+            
             <BodyHome></BodyHome>
             <SelectionButton></SelectionButton>
             <ChooseUs></ChooseUs>

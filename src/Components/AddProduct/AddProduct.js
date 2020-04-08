@@ -4,7 +4,7 @@ import data from '../../Data/data';
 const AddProduct = () => {
     const load = data;
     const insertData = () => {
-        fetch('http://localhost:4000/addProduct', {
+        fetch('https://damp-ocean-20947.herokuapp.com/addProduct', {
             method:'POST',
             body:JSON.stringify(data),
             headers: {
