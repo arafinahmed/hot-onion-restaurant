@@ -3,7 +3,10 @@ import UseAuth from '../Login/UseAuth';
 
 const SignIn = () => {
     const auth = UseAuth();
+<<<<<<< HEAD
     
+=======
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
     const [user, setUser] = useState({
         email:'',
         password:''
@@ -40,7 +43,11 @@ const SignIn = () => {
         console.log(auth);
         auth.signInFirebase(user)
         .then(res => {console.log(res);
+<<<<<<< HEAD
             window.location.pathname = '/cart';
+=======
+            x = 12;
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
         })
         .catch(err => {
             console.log(err.message);
@@ -62,6 +69,10 @@ const SignIn = () => {
                 <input className="signUpForm signupButton" type="submit" value="Signin"/>
             </form>
 
+<<<<<<< HEAD
+=======
+            <button onClick={handleGoogle}>Signin With Google</button>
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
         </div>
     );
 };

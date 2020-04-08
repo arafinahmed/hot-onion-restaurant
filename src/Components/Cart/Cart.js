@@ -1,5 +1,6 @@
 import React from 'react';
 import ThreButton from '../Threbutton/ThreButton';
+<<<<<<< HEAD
 
 import './Cart.css'
 import UseAuth from '../Login/UseAuth';
@@ -29,6 +30,19 @@ const Cart = () => {
     const cart = auth.cart;
     const key = Object.keys(cart);
     console.log(auth.user);
+=======
+import './Cart.css'
+import UseAuth from '../Login/UseAuth';
+import data from '../../Data/data';
+
+const Cart = () => {
+    const item = data;
+    console.log(item);
+    const auth = UseAuth();
+    const cart = auth.cart;
+    const key = Object.keys(cart);
+    console.log(cart)
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
     let sutotal = 0;
     let fee = 0;
     let delevery_charge = 0;
@@ -47,6 +61,7 @@ const Cart = () => {
         fee = 2;
     }
     total = sutotal + fee + delevery_charge;
+<<<<<<< HEAD
     const stripePromise = loadStripe('pk_test_Up5ZVvGDaufTuBqaaMMgtc3000FbsXBZ7I');
     
     const payNowButton = () => {
@@ -81,11 +96,17 @@ const Cart = () => {
             })
 
     }
+=======
+    
+    
+    
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
    
     return (
         <div className="container">
             <ThreButton></ThreButton>
             <div className="d-flex justify-content-between">
+<<<<<<< HEAD
                 <div style={{display:shipmentAdded &&'none'}} className="leftside">
                     <h3>Edit Delivery Details</h3>
                     <form className="savecontinue" onSubmit={handleSubmit(onSubmit)}>
@@ -116,6 +137,25 @@ const Cart = () => {
                     </form>
                 </div>
                 <div className="rightside" style={{display:pay &&'none'}}>
+=======
+                <div className="leftside">
+                    <h3>Edit Delivery Details</h3>
+                    <form className="savecontinue">
+                        <input className="signUpForm sclass" type="text" name="name" placeholder="Delivery Type" required />
+                        <br />
+                        <input className="signUpForm sclass" type="text" name="email" placeholder="Road No." required />
+                        <br />
+                        <input className="signUpForm sclass" type="text" name="password1" placeholder="Flat No." required />
+                        <br />
+                        <input className="signUpForm sclass" type="text" name="password2" placeholder="Business Name" required />
+                        <br />
+                        <input className="signUpForm sclass" type="text" name="password2" placeholder="Delivery Instruction" required />
+                        <br />
+                        <input className="signUpForm signupButton" type="submit" value="Save & Continue" />
+                    </form>
+                </div>
+                <div className="rightside">
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                     <p>From <b>Gulshan Plaza Restaurant GPR</b>
                         <br />
                     Arriving in 20-30 minutes. <br />
@@ -136,6 +176,7 @@ const Cart = () => {
                             <h5>{total}</h5>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <button onClick={payNowButton} className="btn btn-success">Pay Now</button>
                 </div>
                 <div style={{display: pay ? 'block':'none'}}>
@@ -143,6 +184,9 @@ const Cart = () => {
                 <Elements stripe={stripePromise}>
                 <CheckoutForm orderConfirm={orderConfirm}></CheckoutForm>
                 </Elements>
+=======
+                    <button className="btn btn-success">Place Order</button>
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                 </div>
             </div>
         </div>

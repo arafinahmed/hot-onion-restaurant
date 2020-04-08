@@ -1,5 +1,9 @@
 {
   "projects": {
+<<<<<<< HEAD
     "default": "hot-onion-restaurant-8b09f"
+=======
+    "default": "hot-onion-restaurant"
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
   }
 }

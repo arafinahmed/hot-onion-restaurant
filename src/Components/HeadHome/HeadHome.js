@@ -26,6 +26,7 @@ const HeadHome = () => {
                 </div></Link>
 
                 <div className="d-flex justify-content-end align-items-center">
+<<<<<<< HEAD
                     {
                         <Link to="/fakecart"> 
                         <div className="right">
@@ -36,6 +37,14 @@ const HeadHome = () => {
                     {
                         auth.user ? <div></div> :
                         <div className="right">
+=======
+                    <Link to="/cart"> 
+                    <div className="right">
+                        {element}
+                    </div>
+                    </Link>
+                    <div className="right">
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                         <Link to = "/signin"> <button className="btn btn-outline-success">Login</button></Link>
                     </div>
                     }

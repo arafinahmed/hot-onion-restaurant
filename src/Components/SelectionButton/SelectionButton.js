@@ -3,7 +3,10 @@ import LoadInformation from '../LoadInformation/LoadInformation';
 
 import './SelectionButton.css'
 import UseAuth from '../Login/UseAuth';
+<<<<<<< HEAD
 import { useEffect } from 'react';
+=======
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
 
 const SelectionButton = () => {
     const auth = UseAuth();
@@ -78,7 +81,11 @@ const SelectionButton = () => {
             {
                 
                 auth.cart ? 
+<<<<<<< HEAD
                     <button onClick={linktocart} className="btn btn-success btn-lg">Checkout  Your Food</button> :
+=======
+                    <button className="btn btn-success btn-lg">Checkout  Your Food</button> :
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                     <button className="btn btn-secondary btn-lg">Checkout Your Food</button>
                 
             }

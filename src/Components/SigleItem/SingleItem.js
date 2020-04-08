@@ -11,10 +11,13 @@ const element = <FontAwesomeIcon icon={faShoppingCart} />
 
 const SingleItem = () => {
     const auth = UseAuth();
+<<<<<<< HEAD
     const vvv = {
         picture: "",
         name: "", LongDescription: "", price: "", id: ""
     }
+=======
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
     console.log('formsingle', auth);
     const [count, setCount] = useState(0);
     const [load, setLoad] = useState(null);
@@ -88,12 +91,28 @@ const SingleItem = () => {
     const addToCart = () => {
         auth.updateCart(Number(key.key), count);
     }
+<<<<<<< HEAD
 
 
+=======
+    const load = data;
+    const product = load.filter(pd => pd.id === key);
+    const pd1 = load.filter(pd => pd.id === pkeyBack);
+    const pd2 = load.filter(pd => pd.id === pkeyFor);
+    
+    const {picture, name, LongDescription, price} = product[0];
+
+    const addToCart = ()  => 
+    {
+        auth.updateCart(key, count);
+    }
+    
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
     return (
         <div className="container">
             <ThreButton></ThreButton>
             <div className="d-flex justify-content-center justify-content-around">
+<<<<<<< HEAD
                 <div className="col-md-6 left-side">
                     <h1>{name}</h1>
                     <p>{LongDescription}</p>
@@ -109,6 +128,32 @@ const SingleItem = () => {
                                     countHandle('plus')
                                 }}>+</button></h5>
                         </div>
+=======
+            <div className="col-md-6 left-side">
+                <h1>{name}</h1>
+                <p>{LongDescription}</p>
+                <div className="d-flex align-items-center">
+                <h2>${price}</h2>
+                <div className="plus-minus">
+                <h5><button className="selection-button1"
+                onClick={()=>{
+                    countHandle('minus')
+                }}>-</button>
+                {count}
+                <button className="selection-button1"onClick={()=>{
+                    countHandle('plus')
+                }}>+</button></h5>
+                </div>                
+                </div>
+                <div className="AddtoCart">
+                    <button onClick={addToCart} className="btn btn-danger">{element} Add</button>
+                </div>
+                <div className="extra-image d-flex justify-content-start">
+                    <div className="col-md-4">
+                        <Link to={"/"+pd1[0].id}>
+                        <img className="img-fluid"src={pd1[0].picture} alt=""/>
+                        </Link>
+>>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                     </div>
                     <div className="AddtoCart">
                         <button onClick={addToCart} className="btn btn-danger">{element} Add</button>
