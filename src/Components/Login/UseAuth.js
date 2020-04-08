@@ -18,7 +18,6 @@ export const useAuth = () => {
 const UseAuth = () => {
     const u = JSON.parse(localStorage.getItem('cart')) ;
     const [user, setUser] = useState(null);
-<<<<<<< HEAD
     const insertData = (data) => {
         fetch('https://damp-ocean-20947.herokuapp.com/addUser', {
             method:'POST',
@@ -35,8 +34,6 @@ const UseAuth = () => {
         })
     }
     
-=======
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
 
      const [cart, setCart] = useState(u);
 
@@ -44,15 +41,11 @@ const UseAuth = () => {
         localStorage.clear();
         localStorage.setItem('cart', JSON.stringify(newCart));
      }
-<<<<<<< HEAD
      const getUser = (usr) => {
         const {email} = usr;
 
         return {email:email};
     }
-=======
-    
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
      const updateCart = (id, count) => {
             const newCart = {
                 ...cart
@@ -66,15 +59,9 @@ const UseAuth = () => {
             console.log('from useAuth', data);
             return firebase.auth().createUserWithEmailAndPassword(data.email, data.password1)
             .then(res => {
-<<<<<<< HEAD
                 const sendData = {name: data.name, email: data.email};
                 insertData(sendData);
                 setUser(sendData);
-=======
-                setUser(data);
-                console.log('success', data);
-                setUser(res.user);
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
                 return res.user;
             })
             .catch(function(error) {
@@ -92,10 +79,7 @@ const UseAuth = () => {
         {
             console.log("signIn");
             setUser(res.user);
-<<<<<<< HEAD
             firebase.auth.Auth.Persistence.LOCAL = true;
-=======
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
             return res.user;
         })
         .catch(function(error) {
@@ -107,7 +91,6 @@ const UseAuth = () => {
             // ...
           });
      }
-<<<<<<< HEAD
      const firebaseSingOut = () => {
         firebase.auth().signOut().then(function() {
             // Sign-out successful.
@@ -117,22 +100,6 @@ const UseAuth = () => {
           });
      }
          
-=======
-     const provider = new firebase.auth.GoogleAuthProvider();        
-    
-    const signInWithGoogle = () => {
-        return firebase.auth().signInWithPopup(provider)
-        .then(res => {
-            
-            return res.user;
-        })
-        .catch(err => {
-            console.log(err);
-            setUser(null);
-            return err.message;
-        })
-    }
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
 
      useEffect(() => {
         firebase.auth().onAuthStateChanged(function(usr) {
@@ -154,15 +121,9 @@ const UseAuth = () => {
         user,
         signUpFirebase, 
         signInFirebase, 
-<<<<<<< HEAD
         cart, 
         updateCart, 
         firebaseSingOut
-=======
-        signInWithGoogle, 
-        cart, 
-        updateCart
->>>>>>> 79acd08969d0f46e83ba580797d5c5b645fdcbf3
     }
 };
 
